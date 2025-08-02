@@ -65,3 +65,6 @@ async def predict_bmi(file: UploadFile = File(...)):
         
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Error processing image: {str(e)}")
+    
+    
+    
