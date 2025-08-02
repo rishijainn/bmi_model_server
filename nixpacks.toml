@@ -1,0 +1,14 @@
+[variables]
+PYTHONUNBUFFERED = "1"
+PYTHONDONTWRITEBYTECODE = "1"
+PIP_NO_CACHE_DIR = "1"
+
+[phases.build]
+cmds = [
+    "pip install --upgrade pip setuptools wheel",
+    "pip install --timeout=2000 --no-cache-dir tensorflow==2.19.0",
+    "pip install --no-cache-dir -r requirements.txt"
+]
+
+[start]
+cmd = "uvicorn main:app --host 0.0.0.0 --port $PORT"
