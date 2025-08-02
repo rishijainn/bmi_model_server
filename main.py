@@ -34,7 +34,6 @@ async def startup_event():
             print("Model weights loaded successfully")
         else:
             print(f"Warning: Model file {model_path} not found. Using untrained model.")
-            # You could initialize with random weights or download from a URL
             
     except Exception as e:
         print(f"Error loading model: {e}")
@@ -65,6 +64,8 @@ async def predict_bmi(file: UploadFile = File(...)):
         
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Error processing image: {str(e)}")
-    
-    
-    
+
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
